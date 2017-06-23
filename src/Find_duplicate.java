@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
+import java.util.StringTokenizer;
 
 public class Find_duplicate {
+	
 
 	public static void main(String[] args){
 		 //Create checksum for this file
@@ -133,4 +135,25 @@ public class Find_duplicate {
 		 return sb.toString();
 		 
 		}
+		 
+			static String timeConversion(String s) {
+		        // Complete this function
+		        StringTokenizer st2 = new StringTokenizer(s, ":");
+		        int num1 = Integer.parseInt((String) st2.nextElement());
+		        String sc=(String) st2.nextElement();
+		        int num2 = Integer.parseInt(sc);
+		        String last = (String) st2.nextElement();
+		        String ap = last.substring(2, 4);
+		        String dp = last.substring(0, 2);
+		        if(ap.equals("PM"))
+		        {
+		        	num1+=12;
+		        	return num1+":"+sc+":"+dp;
+		        }
+		        else if(ap.equals("AM"))
+		        {
+		        	return s;
+		        }
+		         return dp;
+		    }
 }
