@@ -3,6 +3,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
 
 public class Find_duplicate {
 
@@ -34,6 +35,7 @@ public class Find_duplicate {
 		 // TODO Auto-generated catch block
 		 e.printStackTrace();
 		 }
+		 */
 		 
 		 /*
 		 //SHA-1 checksum 
@@ -54,25 +56,30 @@ public class Find_duplicate {
 			if (list==null) return;
 			
 			String [] checksum =new String[list.length];
+			int collision=0;
+			HashMap<String, String> myMap = new HashMap<String, String>();
 			for (File f : list){
 				if (f.isDirectory()){
 					walk(f.getAbsolutePath());
 					System.out.println("Dir: " + f.getAbsoluteFile() );
 				}else{
-					System.out.println("File: "+ f.getAbsoluteFile());
+					//System.out.println("File: "+ f.getAbsoluteFile());
 					MessageDigest md5Digest;
 					 String chck;
 					 
 					 try {
-					 md5Digest = MessageDigest.getInstance("MD5");
+					 md5Digest = MessageDigest.getInstance("SHA-1");
 					 chck = getFileChecksum(md5Digest, f);
 					 //see checksum
-					 System.out.println(chck);
+					 //System.out.println(chck);
+					 myMap.put(f.getAbsoluteFile().getName(),chck);
+
 					 for(int j=0;j<checksum.length;j++)
 					 {
 						 if(chck.equals(checksum[j]))
 						 {
 							 System.out.println("duplicate file detected" + f.getAbsoluteFile());
+							 collision++;
 						 }
 					 }
 					 checksum[i]=chck;
@@ -84,7 +91,10 @@ public class Find_duplicate {
 					 i++;
 				}
 			}
-	
+			for (String key : myMap.keySet()) {
+			    System.out.println("Key = " + key);
+			}
+			System.out.println("Number of Collisions: "+ collision);
 		}
 
 		 private static String getFileChecksum(MessageDigest digest, File file) throws IOException
