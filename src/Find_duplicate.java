@@ -1,3 +1,5 @@
+//https://www.javacodegeeks.com/2012/09/simple-rest-client-in-java.html
+//https://github.com/andrewjonesdev/TwilioInteraction
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -147,7 +149,10 @@ public class Find_duplicate {
 		        String dp = last.substring(0, 2);
 		        if(ap.equals("PM"))
 		        {
-		        	num1+=12;
+		        	if(num1<12)
+		            {
+		        	    num1+=12;
+		            }
 		        	return num1+":"+sc+":"+dp;
 		        }
 		        else if(ap.equals("AM"))
