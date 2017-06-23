@@ -94,6 +94,10 @@ public class Find_duplicate {
 			for (String key : myMap.keySet()) {
 			    System.out.println("Key = " + key);
 			}
+			for (String value : myMap.values()) {
+			    System.out.println("Value = " + value);
+			}
+
 			System.out.println("Number of Collisions: "+ collision);
 		}
 
